@@ -11,11 +11,14 @@
 
 <div id="app2"><myheader v-bind:signedin=signedin></myheader></div>
     
-    
+   <center><div id="navigation">
+<toplinks v-bind:page=page></toplinks>
+</div></center>
+ 
     
 <h1>Sign up </h1> 
 
-/
+
       
   <center> <form id="signup">
 <h2>Students/Parents </h2>
@@ -111,6 +114,8 @@
 
 
 <script>
+    
+
 Vue.component('myheader', {
 props: ['signedin'],
 template: `<div>
@@ -119,6 +124,29 @@ template: `<div>
 <a href='signout.html' v-if='signedin'>sign out</a>
 </div>`,
 })  
+    
+       
+Vue.component('toplinks', {
+props: ['page'],
+template: `<div>
+<a href='home.html' v-bind:class="{active: page==='home'}">home</a>
+
+<a href='html1.html' v-bind:class="{active: page==='userpage'}">alphabetically</a>
+
+<a href='n2.html' v-bind:class="{active: page==='userpage'}">Userpage</a>
+
+<a href='sdsdfsd.html' v-bind:class="{active: page==='userpage'}">add to database</a>
+
+<a href='hendon.html' v-bind:class="{active: page==='userpage'}">courses</a>
+
+<a href='exper.html' v-bind:class="{active: page==='course'}">filter</a>
+</div>`
+})
+    
+ var vue3 = new Vue({
+el: '#navigation',
+data: {'page': 'home'}
+})
      validuser = JSON.parse(localStorage.getItem('loggeduser'));
   
         if (validuser)  {
@@ -130,7 +158,9 @@ data: {
 })
 
            
-  } 
+  }
+    
+    
       if (!validuser)  {
    var vue2 = new Vue({
 el: '#app2',
